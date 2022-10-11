@@ -8,55 +8,11 @@ variable "azurerm_virtual_machine_scale_set" {
   type = string
 }
 
-# resource "azurerm_linux_virtual_machine_scale_set" "scale-set" {
-#   name                = "exampleset"
-#   location            = var.location
-#   resource_group_name = var.rg-name
-#   upgrade_mode        = "Manual"
-#   sku                 = "Standard_F2"
-#   instances           = var.instance-count
-#   admin_username      = "ubuntu"
-
-#   admin_ssh_key {
-#     username   = "ubuntu"
-#     public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFHHKP0Cb86mR0uWKxXTpzE6WkVidCyUL2eoRBXGTKrjObLcOlQAG7NdC5BoG+PQeWle4MufDliu+2r8riizJT7jxHLl7EBHi9iHKLolY1p4Mic0l5k3swThslBxfv5dhIG4uwFg54qQKYGPAc6QC9DPRBPpgONv5JYPg52CR9XjVY8YDT96Z3d+MV2YbAakm1HNgZiQyIGwyxCyM/smDfZV7l5GKUEX6whfYdMuAozKFNc0rtz59NRKtCb+8LMC2zEtfnt9PjB6NswMkA/VJPn7OiSRDZPwIUZGA7Mihc+A7kJqOkqC730evgL+U7p4DKUxOk3TjUh4iBia8wJ+ImkO5sULyUxC5Pu9GOnszvnOrWRGlEBEuxrXEdo0mFgOTWlruXt2Z/FeL8PDosLtZTr22uuFOAPBmP0G9pbDGwoUASIpEN2suJJFBU9dJX5umDxrbJTZkJgo8PdbSCkN5P0zGxrxlFMGcoz+0XnTL8QutOG8r+Zd55kr3bL/dwiQk= ubuntu@DESKTOP-9D634I2"
-#   }
-
-#   network_interface {
-#     name    = "TestNetworkProfile"
-#     primary = true
-
-#     ip_configuration {
-#       name      = "TestIPConfiguration"
-#       primary   = true
-#       subnet_id = var.subnet-id
-#     }
-#   }
-
-#   os_disk {
-#     caching              = "ReadWrite"
-#     storage_account_type = "StandardSSD_LRS"
-#   }
-
-#   source_image_reference {
-#     publisher = "Canonical"
-#     offer     = "UbuntuServer"
-#     sku       = "16.04-LTS"
-#     version   = "latest"
-#   }
-
-#   lifecycle {
-#     ignore_changes = ["instances"]
-#   }
-# }
-
 resource "azurerm_virtual_machine_scale_set" "scale-set" {
   name                = var.azurerm_virtual_machine_scale_set
   location            = var.location
   resource_group_name = var.rg-name
   upgrade_policy_mode = "Manual"
-
-  #zones = local.zones
 
   sku {
     name     = "Standard_B1S"
